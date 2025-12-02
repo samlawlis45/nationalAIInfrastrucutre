@@ -45,6 +45,24 @@ const DEMOS = [
     borderTop: true
   },
   { 
+    name: "BIOLOOP-RNG", 
+    description: "Circular attribution for agriculture", 
+    href: "/demo/bioloop-rng",
+    className: "text-emerald-400"
+  },
+  { 
+    name: "Grid to Care", 
+    description: "Rural health microgrids", 
+    href: "/demo/grid-to-care",
+    className: "text-red-400"
+  },
+  { 
+    name: "AQUATREATY", 
+    description: "Constitutional water control plane", 
+    href: "/demo/aquatreaty",
+    className: "text-cyan-400"
+  },
+  { 
     name: "AthleteGate", 
     description: "NIL governance for college sports", 
     href: "/demo/athletegate",
@@ -108,8 +126,8 @@ export default function Navbar() {
                       href={demo.href}
                       className={`block px-4 py-3 hover:bg-slate-800 ${index === 0 ? 'rounded-t-lg' : ''} ${index === DEMOS.length - 1 ? 'rounded-b-lg' : ''} ${demo.borderTop ? 'border-t border-slate-700' : ''}`}
                     >
-                      <div className={`font-medium ${demo.className || 'text-slate-200'}`}>{demo.name}</div>
-                      <div className="text-xs text-slate-400">{demo.description}</div>
+                      <div className="font-medium text-white">{demo.name}</div>
+                      <div className="text-xs text-white">{demo.description}</div>
                     </Link>
                   ))}
                 </div>

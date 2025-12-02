@@ -1,10 +1,70 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, Check, ChevronDown, Database, Globe, Shield, User, Zap } from 'lucide-react';
+import { ArrowRight, Check, ChevronDown, Database, Globe, Shield, User, Zap, Send, CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function Home() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID || 'YOUR_FORM_ID';
+      
+      // Check if form ID is still placeholder
+      if (formId === 'YOUR_FORM_ID') {
+        setStatus('error');
+        setErrorMessage('Formspree form ID not configured. Please set NEXT_PUBLIC_FORMSPREE_ID in your environment variables.');
+        return;
+      }
+
+      const response = await fetch(`https://formspree.io/f/${formId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        const data = await response.json();
+        setStatus('error');
+        // Handle Formspree specific error messages
+        if (data.error) {
+          setErrorMessage(data.error);
+        } else if (response.status === 404) {
+          setErrorMessage('Form not found. Please check your Formspree form ID.');
+        } else {
+          setErrorMessage('Something went wrong. Please try again.');
+        }
+      }
+    } catch (error) {
+      setStatus('error');
+      setErrorMessage('Network error. Please check your connection and try again.');
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500/30">
       {/* Hero Section */}
@@ -384,6 +444,57 @@ export default function Home() {
               </div>
             </Link>
 
+            {/* BIOLOOP-RNG */}
+            <Link href="/demo/bioloop-rng" id="demo-bioloop-rng" className="demo-card block bg-slate-900 border border-emerald-500/30 rounded-xl p-6 transition hover:border-emerald-500/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 font-medium">CIRCULAR LOOP</span>
+                <span className="text-xs px-2 py-1 rounded bg-emerald-500/10 text-emerald-400">Interactive</span>
+              </div>
+              <h4 className="font-semibold mb-2">BIOLOOP-RNG</h4>
+              <p className="text-slate-400 text-sm mb-3">Circular attribution for agricultural carbon markets</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-emerald-400">Corn → DDGS → Cattle → RNG → Fuel</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* Grid to Care */}
+            <Link href="/demo/grid-to-care" id="demo-grid-to-care" className="demo-card block bg-slate-900 border border-red-500/30 rounded-xl p-6 transition hover:border-red-500/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-red-500/20 text-red-400 font-medium">HEALTH MICROGRID</span>
+                <span className="text-xs px-2 py-1 rounded bg-red-500/10 text-red-400">Interactive</span>
+              </div>
+              <h4 className="font-semibold mb-2">Grid to Care</h4>
+              <p className="text-slate-400 text-sm mb-3">Rural health microgrids with attribution and resilience</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-red-400">Outage → Backup</span> • <span className="text-cyan-400">Curtailment → Capture</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-red-400 hover:text-red-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* AQUATREATY */}
+            <Link href="/demo/aquatreaty" id="demo-aquatreaty" className="demo-card block bg-slate-900 border border-cyan-500/30 rounded-xl p-6 transition hover:border-cyan-500/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-cyan-500/20 text-cyan-400 font-medium">WATER TREATY</span>
+                <span className="text-xs px-2 py-1 rounded bg-cyan-500/10 text-cyan-400">Interactive</span>
+              </div>
+              <h4 className="font-semibold mb-2">AQUATREATY</h4>
+              <p className="text-slate-400 text-sm mb-3">Constitutional control plane for shared water systems</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-cyan-400">Drought → Treaty</span> • <span className="text-red-400">Override → Compensation</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
             {/* AthleteGate */}
             <Link href="/demo/athletegate" id="demo-athletegate" className="demo-card block bg-slate-900 border border-blue-500/30 rounded-xl p-6 transition hover:border-blue-500/50">
               <div className="flex items-center justify-between mb-4">
@@ -469,16 +580,104 @@ export default function Home() {
 
       {/* CTA Section */}
       <section id="contact" className="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-950">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Build the Governance Layer Before It's Retrofitted</h2>
-          <p className="text-slate-300 text-lg mb-8">
-            AI is launching without governance substrate. The Genesis Mission is the opportunity to get it right 
-            from the start. We have the IP. We have the architecture. Let's talk.
-          </p>
-          <a href="mailto:contact@anchortrust.com" className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 px-8 py-4 rounded-lg font-medium text-lg transition text-white">
-            Contact Us
-            <ArrowRight className="w-5 h-5" />
-          </a>
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">Build the Governance Layer Before It's Retrofitted</h2>
+            <p className="text-slate-300 text-lg mb-8">
+              AI is launching without governance substrate. The Genesis Mission is the opportunity to get it right 
+              from the start. We have the IP. We have the architecture. Let's talk.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="bg-slate-900/50 border border-slate-800 rounded-2xl p-8 space-y-6">
+            {status === 'success' && (
+              <div className="bg-emerald-900/20 border border-emerald-500/50 rounded-lg p-4 flex items-center gap-3 text-emerald-400">
+                <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                <span>Message sent successfully! We'll get back to you soon.</span>
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="bg-red-900/20 border border-red-500/50 rounded-lg p-4 flex items-center gap-3 text-red-400">
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <span>{errorMessage || 'Failed to send message. Please try again.'}</span>
+              </div>
+            )}
+
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-slate-300 mb-2">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                placeholder="Your name"
+                disabled={status === 'submitting'}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+                placeholder="your.email@example.com"
+                disabled={status === 'submitting'}
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium text-slate-300 mb-2">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                rows={6}
+                className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition resize-none"
+                placeholder="Message"
+                disabled={status === 'submitting'}
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={status === 'submitting' || status === 'success'}
+              className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 disabled:from-slate-700 disabled:to-slate-700 disabled:cursor-not-allowed px-8 py-4 rounded-lg font-medium text-lg transition text-white"
+            >
+              {status === 'submitting' ? (
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  Sending...
+                </>
+              ) : status === 'success' ? (
+                <>
+                  <CheckCircle2 className="w-5 h-5" />
+                  Message Sent
+                </>
+              ) : (
+                <>
+                  Send Message
+                  <Send className="w-5 h-5" />
+                </>
+              )}
+            </button>
+          </form>
         </div>
       </section>
 
