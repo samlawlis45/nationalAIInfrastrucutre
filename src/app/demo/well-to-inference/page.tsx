@@ -2,9 +2,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, CheckCircle2, Zap, Globe, Lock, Database, ChevronDown, ChevronRight, Copy } from 'lucide-react';
+import Link from 'next/link';
 
 // Grid region data (EPA eGRID 2023)
-const gridData: Record<string, { intensity: number; renewable: number; mix: Record<string, number> }> = {
+type GridMix = { solar: number; wind: number; gas: number; nuclear: number; hydro: number; coal: number; other: number };
+type GridData = { intensity: number; renewable: number; mix: GridMix };
+
+const gridData: Record<string, GridData> = {
   'CAISO': { intensity: 142, renewable: 0.68, mix: { solar: 25, wind: 12, gas: 38, nuclear: 8, hydro: 15, coal: 0, other: 2 } },
   'ERCOT': { intensity: 385, renewable: 0.31, mix: { solar: 6, wind: 25, gas: 47, nuclear: 10, hydro: 0, coal: 10, other: 2 } },
   'PJM': { intensity: 372, renewable: 0.23, mix: { solar: 2, wind: 4, gas: 40, nuclear: 34, hydro: 3, coal: 15, other: 2 } },
@@ -90,6 +94,16 @@ export default function WellToInferenceDemo() {
 
   const results = calculate();
 
+  const generateHash = (input: string) => {
+    let hash = 0;
+    for (let i = 0; i < input.length; i++) {
+      const char = input.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(16).padStart(64, '0').substring(0, 64);
+  };
+
   const generateReceipt = () => {
     const timestamp = new Date().toISOString();
     const receiptId = 'WTI-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -156,20 +170,10 @@ export default function WellToInferenceDemo() {
     }, 100);
   };
 
-  const generateHash = (input: string) => {
-    let hash = 0;
-    for (let i = 0; i < input.length; i++) {
-      const char = input.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(16).padStart(64, '0').substring(0, 64);
-  };
-
   return (
     <div className="min-h-screen bg-slate-950 text-white pb-24">
       {/* Hero */}
-      <section className="pt-12 pb-12 px-6">
+      <section className="pt-24 pb-12 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
@@ -197,11 +201,11 @@ export default function WellToInferenceDemo() {
                 <div className="text-xs text-slate-500 uppercase tracking-wide mb-2">Automotive (DOE Standard)</div>
                 <div className="flex items-center gap-2 text-sm text-slate-300 flex-wrap">
                   <span className="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">Well</span>
-                  <span className="text-slate-600">→</span>
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                   <span className="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">Refinery</span>
-                  <span className="text-slate-600">→</span>
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                   <span className="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">Pump</span>
-                  <span className="text-slate-600">→</span>
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                   <span className="bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">Wheel</span>
                 </div>
               </div>
@@ -209,11 +213,11 @@ export default function WellToInferenceDemo() {
                 <div className="text-xs text-slate-500 uppercase tracking-wide mb-2">AI Compute (Our Method)</div>
                 <div className="flex items-center gap-2 text-sm text-slate-300 flex-wrap">
                   <span className="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Generation</span>
-                  <span className="text-slate-600">→</span>
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                   <span className="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Transmission</span>
-                  <span className="text-slate-600">→</span>
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                   <span className="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Data Center</span>
-                  <span className="text-slate-600">→</span>
+                  <ArrowRight className="w-4 h-4 text-slate-600" />
                   <span className="bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Inference</span>
                 </div>
               </div>
@@ -476,4 +480,3 @@ export default function WellToInferenceDemo() {
     </div>
   );
 }
-

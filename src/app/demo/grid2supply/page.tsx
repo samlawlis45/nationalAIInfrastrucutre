@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
-import { CheckCircle2, Activity, Network, Shield, AlertTriangle, Package, Truck, Thermometer, ArrowRight, Ship, Factory, Building2, Stethoscope, Settings, Radio, ClipboardList, BarChart3, TrendingUp, Ghost, RefreshCw } from 'lucide-react';
+import { CheckCircle2, Activity, Network, Shield, AlertTriangle, Package, Truck, Thermometer, ArrowRight, Ship, Factory, Building2, Stethoscope, Settings, Radio, ClipboardList, BarChart3, TrendingUp, Ghost, RefreshCw, Plane, XCircle, Check, X } from 'lucide-react';
 
 // ============ RECEIPT SCHEMAS ============
 const createBaseReceipt = (type: string, corridorId: string, assetBatchId: string, shipmentId: string | null, orderId: string | null) => ({
@@ -25,6 +25,7 @@ export default function Grid2SupplyDemo() {
   // Core state
   const [scenario, setScenario] = useState<string | null>(null);
   const [scenarioType, setScenarioType] = useState<string | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [scenarioStep, setScenarioStep] = useState(0);
   
   // Corridor state
@@ -322,7 +323,7 @@ export default function Grid2SupplyDemo() {
         ...createBaseReceipt('PATHWELL_SUPPLY_DIGITAL_V1', corridorId, assetBatchId, shipmentId, null),
         stage: "LOGISTICS_PROVIDER",
         node_role: "FORWARDER",
-        summary: "⚠️ Forwarder booked AIR ($50,700)",
+        summary: "Forwarder booked AIR ($50,700)",
         actor: { role: "Forwarder", org_id: "FORWARDER_A" },
         event_type: "BOOKING_CREATED",
         booking_details: {
@@ -347,7 +348,7 @@ export default function Grid2SupplyDemo() {
         ...createBaseReceipt('PATHWELL_SUPPLY_PHYSICAL_V1', corridorId, assetBatchId, shipmentId, null),
         stage: "LOGISTICS_PROVIDER",
         node_role: "CARRIER",
-        summary: "⚠️ Airport scan: 35u on flight ACE-2847",
+        summary: "Airport scan: 35u on flight ACE-2847",
         actor: { role: "Carrier", device_id: "SCANNER-DFW-CARGO-07" },
         event_type: "DEPARTURE_SCAN",
         scan_details: {
@@ -452,7 +453,7 @@ export default function Grid2SupplyDemo() {
         shipment_id: shipmentId,
         stage: "IN_TRANSIT",
         node_role: "SENSOR",
-        summary: "Temp: 4.2°C ✓ (range: 2-8°C)",
+        summary: "Temp: 4.2°C (range: 2-8°C)",
         device: { device_id: deviceId, attested: true },
         measurement: {
           type: "TEMPERATURE",
@@ -483,7 +484,7 @@ export default function Grid2SupplyDemo() {
         shipment_id: shipmentId,
         stage: "IN_TRANSIT",
         node_role: "SENSOR",
-        summary: "⚠️ TEMP BREACH: 12.8°C (max: 8°C)",
+        summary: "TEMP BREACH: 12.8°C (max: 8°C)",
         device: { device_id: deviceId, attested: true },
         measurement: {
           type: "TEMPERATURE",
@@ -632,7 +633,7 @@ export default function Grid2SupplyDemo() {
   return (
     <div className="min-h-screen bg-slate-950 text-white pb-24">
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-6 pb-12 pt-24">
         <div className="flex items-center justify-between flex-wrap gap-4 mb-8">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
@@ -860,11 +861,15 @@ export default function Grid2SupplyDemo() {
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Mode:</span>
-                        <span className="text-green-400 font-medium bg-green-900/20 px-2 py-0.5 rounded border border-green-500/20">🚚 TRUCK</span>
+                        <span className="text-green-400 font-medium bg-green-900/20 px-2 py-0.5 rounded border border-green-500/20 flex items-center gap-1">
+                          <Truck className="w-3 h-3" /> TRUCK
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Expedite:</span>
-                        <span className="text-red-400 bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20 text-xs">❌ NOT AUTHORIZED</span>
+                        <span className="text-red-400 bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20 text-xs flex items-center gap-1">
+                          <XCircle className="w-3 h-3" /> NOT AUTHORIZED
+                        </span>
                       </div>
                       <div className="flex justify-between items-center pt-2 border-t border-slate-800">
                         <span className="text-slate-400">Planned Cost:</span>
@@ -892,7 +897,7 @@ export default function Grid2SupplyDemo() {
                       <span className={`text-[10px] px-2 py-0.5 rounded ml-auto border ${
                         anomaly ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-blue-500/10 text-blue-400 border-blue-500/20'
                       }`}>
-                        {anomaly ? '⚠️ MISMATCH' : 'RECEIVED'}
+                        {anomaly ? <span className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> MISMATCH</span> : 'RECEIVED'}
                       </span>
                     )}
                   </div>
@@ -900,7 +905,9 @@ export default function Grid2SupplyDemo() {
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Mode:</span>
-                        <span className="text-red-400 font-medium bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20">✈️ AIR ⚠️</span>
+                        <span className="text-red-400 font-medium bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20 flex items-center gap-1">
+                          <Plane className="w-3 h-3" /> AIR <AlertTriangle className="w-3 h-3" />
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Forwarder:</span>
@@ -932,7 +939,7 @@ export default function Grid2SupplyDemo() {
                       <span className={`text-[10px] px-2 py-0.5 rounded ml-auto border ${
                         anomaly ? 'bg-red-500/10 text-red-400 border-red-500/20' : 'bg-purple-500/10 text-purple-400 border-purple-500/20'
                       }`}>
-                        {anomaly ? '⚠️ CONFIRMS' : 'RECEIVED'}
+                        {anomaly ? <span className="flex items-center gap-1"><AlertTriangle className="w-3 h-3" /> CONFIRMS</span> : 'RECEIVED'}
                       </span>
                     )}
                   </div>
@@ -940,7 +947,9 @@ export default function Grid2SupplyDemo() {
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Mode:</span>
-                        <span className="text-red-400 font-medium bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20">✈️ AIR ⚠️</span>
+                        <span className="text-red-400 font-medium bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20 flex items-center gap-1">
+                          <Plane className="w-3 h-3" /> AIR <AlertTriangle className="w-3 h-3" />
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Flight:</span>
@@ -1064,14 +1073,18 @@ export default function Grid2SupplyDemo() {
                     <div className={`p-2 rounded-lg bg-slate-800 ${orchestratorReceipts.physical ? 'text-red-400' : 'text-slate-400'}`}><AlertTriangle className="w-5 h-5" /></div>
                     <span className={`font-semibold tracking-wide ${orchestratorReceipts.physical ? 'text-red-400' : 'text-slate-400'}`}>BREACH EVENT</span>
                     {orchestratorReceipts.physical && (
-                      <span className="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded ml-auto border border-red-500/20 animate-pulse">⚠️ BREACH</span>
+                      <span className="text-[10px] bg-red-500/10 text-red-400 px-2 py-0.5 rounded ml-auto border border-red-500/20 animate-pulse flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3" /> BREACH
+                      </span>
                     )}
                   </div>
                   {orchestratorReceipts.physical ? (
                     <div className="space-y-3 text-sm">
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Temperature:</span>
-                        <span className="text-red-400 font-bold text-lg bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20">12.8°C ⚠️</span>
+                        <span className="text-red-400 font-bold text-lg bg-red-900/20 px-2 py-0.5 rounded border border-red-500/20 flex items-center gap-1">
+                          12.8°C <AlertTriangle className="w-4 h-4" />
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-slate-400">Duration:</span>
@@ -1291,4 +1304,3 @@ export default function Grid2SupplyDemo() {
     </div>
   );
 }
-

@@ -43,3 +43,5 @@ export function Card({ category, title, description, onClick }: CardProps) {
   );
 }
 
+
+

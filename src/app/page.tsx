@@ -1,71 +1,58 @@
 "use client";
 
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, Shield, Scale, Zap, Globe, Lock, Database, FileText, ChevronRight } from 'lucide-react';
-import { Section, Card } from './components/ui/Structure';
+import React from 'react';
 import Link from 'next/link';
+import { ArrowRight, Check, ChevronDown, Database, Globe, Shield, User, Zap } from 'lucide-react';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('attribution');
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <div className="bg-bg-primary min-h-screen font-sans selection:bg-accent-blue selection:text-white">
-      
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-blue-500/30">
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6 relative overflow-hidden">
         <div className="absolute inset-0 bg-[linear-gradient(rgba(59,130,246,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(59,130,246,0.03)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-accent-blue/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-blue-500/10 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto relative">
-          <div className="inline-flex items-center gap-2 bg-accent-blue/10 border border-accent-blue/20 rounded-full px-4 py-2 mb-8">
-            <span className="w-2 h-2 bg-accent-blue rounded-full animate-pulse"></span>
-            <span className="text-accent-blue text-sm">November 24, 2025: Executive Order launches Genesis Mission</span>
-            <ChevronRight className="w-4 h-4 text-accent-blue" />
+          <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-8">
+            <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+            <span className="text-blue-300 text-sm">November 24, 2025: Executive Order launches Genesis Mission</span>
+            <ArrowRight className="w-4 h-4 text-blue-400" />
           </div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 max-w-4xl text-heading">
-            The Genesis Mission Needs a <span className="text-white">Governance Layer</span>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 max-w-4xl">
+            The Genesis Mission Needs a <span className="gradient-text">Governance Layer</span>
           </h1>
           
-          <p className="text-xl text-text-body max-w-2xl mb-8 leading-relaxed">
+          <p className="text-xl text-slate-300 max-w-2xl mb-8 leading-relaxed">
             The Executive Order builds the compute substrate. We provide the constitutional 
             infrastructure that makes it trustworthy, accountable, and economically fair.
           </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Link href="/demo/well-to-inference" className="bg-gradient-to-r from-accent-emerald to-accent-cyan hover:from-emerald-500 hover:to-cyan-400 px-6 py-3 rounded-lg font-medium transition flex items-center justify-center gap-2 text-white">
+            <Link href="/demo/well-to-inference" className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 px-6 py-3 rounded-lg font-medium transition flex items-center justify-center gap-2 text-white">
               Try Well-to-Inference Calculator
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <button onClick={() => scrollToSection('genesis')} className="bg-bg-card hover:bg-slate-800 border border-border px-6 py-3 rounded-lg font-medium transition flex items-center justify-center gap-2 text-text-body">
+            <a href="#genesis" className="bg-slate-800 hover:bg-slate-700 border border-slate-700 px-6 py-3 rounded-lg font-medium transition flex items-center justify-center gap-2 text-white">
               See Genesis Alignment
-            </button>
+            </a>
           </div>
-          
+
           {/* Key stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-3xl font-bold text-accent-blue">1,000+</div>
-              <div className="text-text-muted text-sm mt-1">Patent Claims Filed</div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+              <div className="text-3xl font-bold text-blue-400">1,000+</div>
+              <div className="text-slate-400 text-sm mt-1">Patent Claims Filed</div>
             </div>
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-3xl font-bold text-accent-cyan">31</div>
-              <div className="text-text-muted text-sm mt-1">Canonical Tiers</div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+              <div className="text-3xl font-bold text-cyan-400">31</div>
+              <div className="text-slate-400 text-sm mt-1">Canonical Tiers</div>
             </div>
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-3xl font-bold text-accent-emerald">3</div>
-              <div className="text-text-muted text-sm mt-1">Provisional Families</div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+              <div className="text-3xl font-bold text-emerald-400">3</div>
+              <div className="text-slate-400 text-sm mt-1">Provisional Families</div>
             </div>
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-3xl font-bold text-accent-amber">✓</div>
-              <div className="text-text-muted text-sm mt-1">Independent Architecture</div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6">
+              <div className="text-3xl font-bold text-amber-400 flex items-center"><Check className="w-8 h-8" /></div>
+              <div className="text-slate-400 text-sm mt-1">Independent Architecture</div>
               <div className="text-slate-500 text-xs mt-0.5">No blocking art identified</div>
             </div>
           </div>
@@ -73,42 +60,41 @@ export default function Home() {
       </section>
 
       {/* Problem Statement */}
-      <section className="py-20 px-6 bg-bg-secondary border-y border-border">
+      <section className="py-20 px-6 bg-slate-900/50 border-y border-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-start gap-4 mb-8">
-            <div className="w-12 h-12 bg-accent-amber/10 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Scale className="w-6 h-6 text-accent-amber" />
+            <div className="w-12 h-12 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <Shield className="w-6 h-6 text-amber-400" />
             </div>
             <div>
-              <h2 className="text-3xl font-bold mb-2 text-heading">The Governance Gap</h2>
-              <p className="text-text-muted max-w-2xl">
+              <h2 className="text-3xl font-bold mb-2">The Governance Gap</h2>
+              <p className="text-slate-400 max-w-2xl">
                 The Genesis Mission creates infrastructure for AI-accelerated science. But infrastructure 
                 without a governance layer creates liability, not value.
               </p>
             </div>
           </div>
-          
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-accent-amber font-mono text-sm mb-3">PROBLEM 01</div>
-              <h3 className="text-xl font-semibold mb-2 text-heading">Attribution Collapse</h3>
-              <p className="text-text-muted text-sm">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-amber-400 font-mono text-sm mb-3">PROBLEM 01</div>
+              <h3 className="text-xl font-semibold mb-2">Attribution Collapse</h3>
+              <p className="text-slate-400 text-sm">
                 When scientific foundation models are trained on federal datasets, who contributed what? 
                 Current systems launder attribution through model weights. Creators get nothing.
               </p>
             </div>
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-accent-amber font-mono text-sm mb-3">PROBLEM 02</div>
-              <h3 className="text-xl font-semibold mb-2 text-heading">Governance Vacuum</h3>
-              <p className="text-text-muted text-sm">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-amber-400 font-mono text-sm mb-3">PROBLEM 02</div>
+              <h3 className="text-xl font-semibold mb-2">Governance Vacuum</h3>
+              <p className="text-slate-400 text-sm">
                 The EO requires "security requirements" and "cybersecurity standards" but provides no 
                 enforcement mechanism. Policies live in PDFs, not at the execution boundary.
               </p>
             </div>
-            <div className="bg-bg-card border border-border rounded-xl p-6">
-              <div className="text-accent-amber font-mono text-sm mb-3">PROBLEM 03</div>
-              <h3 className="text-xl font-semibold mb-2 text-heading">Economic Injustice</h3>
-              <p className="text-text-muted text-sm">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-amber-400 font-mono text-sm mb-3">PROBLEM 03</div>
+              <h3 className="text-xl font-semibold mb-2">Economic Injustice</h3>
+              <p className="text-slate-400 text-sm">
                 When models commercialize, who gets paid? The EO mandates "commercialization of IP" 
                 without providing the economic rails to make it automatic and fair.
               </p>
@@ -117,289 +103,107 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Genesis Alignment Interactive */}
+      {/* Genesis Alignment */}
       <section id="genesis" className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-heading">Direct Alignment with Executive Order Requirements</h2>
-            <p className="text-text-muted max-w-2xl mx-auto">
-              Every gap in the Genesis Mission maps to specific capabilities in our IP portfolio. 
-              Select each requirement to see how we solve it.
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Direct Alignment with Executive Order Requirements</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Every gap in the Genesis Mission maps to specific capabilities in our IP portfolio.
             </p>
           </div>
 
-          {/* Tab navigation */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {[
-              { id: 'attribution', label: '§3(a)(v) – IP & Data' },
-              { id: 'privacy', label: '§5(c)(ii) – Trade Secrets' },
-              { id: 'economics', label: '§5(c)(ii) – Commercialization' },
-              { id: 'international', label: '§5(d) – International' },
-              { id: 'security', label: '§3(b) – Security' },
-              { id: 'hardware', label: '§3(a)(i) – Compute' }
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition ${
-                  activeTab === tab.id 
-                    ? 'bg-accent-blue text-white' 
-                    : 'bg-bg-card text-text-body hover:bg-slate-800'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Tab contents */}
-          <div className="bg-bg-card border border-border rounded-2xl p-8 max-w-4xl mx-auto min-h-[300px]">
-            {activeTab === 'attribution' && (
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Database className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  <div>
-                    <div className="text-accent-blue font-mono text-sm mb-1">Executive Order §3(a)(v)</div>
-                    <h3 className="text-xl font-semibold text-heading">"IP protections & data-management standards"</h3>
-                  </div>
+          {/* Governance Architecture */}
+          <div id="technology" className="bg-slate-900 border border-slate-800 rounded-2xl p-8 mb-12">
+            <h3 className="text-xl font-semibold mb-6 text-center">The Governance Layer Architecture</h3>
+            <p className="text-slate-400 text-center mb-8 max-w-2xl mx-auto">Five mandatory requirements before and during every execution. Not policies—protocol-layer enforcement.</p>
+            
+            <div className="grid md:grid-cols-5 gap-4">
+              <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <User className="w-5 h-5 text-blue-400" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-status-error/5 border border-status-error/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Shield className="w-4 h-4 text-status-error" />
-                      <span className="text-status-error font-medium text-sm">Without Governance Layer</span>
-                    </div>
-                    <p className="text-text-body text-sm">No mechanism to track which datasets contributed to model outputs</p>
-                  </div>
-                  <div className="bg-status-success/5 border border-status-success/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                      <span className="text-status-success font-medium text-sm">With PATHWELL CONNECT™</span>
-                    </div>
-                    <p className="text-text-body text-sm">AUTH.OBJ cryptographic attribution binds datasets to training lineage</p>
-                  </div>
-                </div>
+                <div className="font-medium text-sm">Provable Actors</div>
+                <div className="text-xs text-slate-500 mt-1">Every device, org, and agent cryptographically enrolled</div>
               </div>
-            )}
-
-            {activeTab === 'privacy' && (
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Lock className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  <div>
-                    <div className="text-accent-blue font-mono text-sm mb-1">Executive Order §5(c)(ii)</div>
-                    <h3 className="text-xl font-semibold text-heading">"Trade-secret protections for external partners"</h3>
-                  </div>
+              <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Database className="w-5 h-5 text-cyan-400" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-status-error/5 border border-status-error/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Shield className="w-4 h-4 text-status-error" />
-                      <span className="text-status-error font-medium text-sm">Without Governance Layer</span>
-                    </div>
-                    <p className="text-text-body text-sm">Partners can't contribute IP without exposing it to competitors</p>
-                  </div>
-                  <div className="bg-status-success/5 border border-status-success/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                      <span className="text-status-success font-medium text-sm">With PATHWELL CONNECT™</span>
-                    </div>
-                    <p className="text-text-body text-sm">GHOST.ATTR enables privacy-preserving attribution and monetization</p>
-                  </div>
-                </div>
+                <div className="font-medium text-sm">Lossless Lineage</div>
+                <div className="text-xs text-slate-500 mt-1">What went in, what ran, what came out—with signatures</div>
               </div>
-            )}
-
-            {activeTab === 'economics' && (
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Scale className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  <div>
-                    <div className="text-accent-blue font-mono text-sm mb-1">Executive Order §5(c)(ii)</div>
-                    <h3 className="text-xl font-semibold text-heading">"Commercialization of intellectual property"</h3>
-                  </div>
+              <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Globe className="w-5 h-5 text-purple-400" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-status-error/5 border border-status-error/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Shield className="w-4 h-4 text-status-error" />
-                      <span className="text-status-error font-medium text-sm">Without Governance Layer</span>
-                    </div>
-                    <p className="text-text-body text-sm">No automatic compensation when models generate commercial value</p>
-                  </div>
-                  <div className="bg-status-success/5 border border-status-success/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                      <span className="text-status-success font-medium text-sm">With PATHWELL CONNECT™</span>
-                    </div>
-                    <p className="text-text-body text-sm">ECON.ROY automatic royalty distribution based on training provenance</p>
-                  </div>
-                </div>
+                <div className="font-medium text-sm">Portable Policy</div>
+                <div className="text-xs text-slate-500 mt-1">Rules travel with the job and enforce wherever it executes</div>
               </div>
-            )}
-
-            {activeTab === 'international' && (
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Globe className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  <div>
-                    <div className="text-accent-blue font-mono text-sm mb-1">Executive Order §5(d)</div>
-                    <h3 className="text-xl font-semibold text-heading">"International scientific collaboration"</h3>
-                  </div>
+              <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Check className="w-5 h-5 text-emerald-400" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-status-error/5 border border-status-error/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Shield className="w-4 h-4 text-status-error" />
-                      <span className="text-status-error font-medium text-sm">Without Governance Layer</span>
-                    </div>
-                    <p className="text-text-body text-sm">Data can't cross borders; rules don't follow workloads</p>
-                  </div>
-                  <div className="bg-status-success/5 border border-status-success/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                      <span className="text-status-success font-medium text-sm">With PATHWELL CONNECT™</span>
-                    </div>
-                    <p className="text-text-body text-sm">TREATY.OBJ enables federated training without data export</p>
-                  </div>
-                </div>
+                <div className="font-medium text-sm">Explanatory Receipts</div>
+                <div className="text-xs text-slate-500 mt-1">Human-readable who/what/why for every decision</div>
               </div>
-            )}
-
-            {activeTab === 'security' && (
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Shield className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  <div>
-                    <div className="text-accent-blue font-mono text-sm mb-1">Executive Order §3(b)</div>
-                    <h3 className="text-xl font-semibold text-heading">"Security requirements for national security mission"</h3>
-                  </div>
+              <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                <div className="w-10 h-10 bg-amber-500/20 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <Shield className="w-5 h-5 text-amber-400" />
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-status-error/5 border border-status-error/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Shield className="w-4 h-4 text-status-error" />
-                      <span className="text-status-error font-medium text-sm">Without Governance Layer</span>
-                    </div>
-                    <p className="text-text-body text-sm">Application-layer controls can be bypassed; policies live in PDFs</p>
-                  </div>
-                  <div className="bg-status-success/5 border border-status-success/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                      <span className="text-status-success font-medium text-sm">With PATHWELL CONNECT™</span>
-                    </div>
-                    <p className="text-text-body text-sm">Fail-closed enforcement: no-token-no-run at protocol layer</p>
-                  </div>
-                </div>
+                <div className="font-medium text-sm">Economic Gates</div>
+                <div className="text-xs text-slate-500 mt-1">No valid evidence → no payout (or no run at all)</div>
               </div>
-            )}
-
-            {activeTab === 'hardware' && (
-              <div className="animate-in fade-in slide-in-from-bottom-2 duration-300">
-                <div className="flex items-start gap-4 mb-6">
-                  <div className="w-12 h-12 bg-accent-blue/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Zap className="w-6 h-6 text-accent-blue" />
-                  </div>
-                  <div>
-                    <div className="text-accent-blue font-mono text-sm mb-1">Executive Order §3(a)(i)</div>
-                    <h3 className="text-xl font-semibold text-heading">"DOE supercomputers + cloud environments"</h3>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-status-error/5 border border-status-error/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <Shield className="w-4 h-4 text-status-error" />
-                      <span className="text-status-error font-medium text-sm">Without Governance Layer</span>
-                    </div>
-                    <p className="text-text-body text-sm">Attribution breaks across heterogeneous compute classes</p>
-                  </div>
-                  <div className="bg-status-success/5 border border-status-success/20 rounded-xl p-5">
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle2 className="w-4 h-4 text-status-success" />
-                      <span className="text-status-success font-medium text-sm">With PATHWELL CONNECT™</span>
-                    </div>
-                    <p className="text-text-body text-sm">Hardware-agnostic attribution works across GPUs, TPUs, quantum, neuromorphic</p>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* Technology Overview */}
-      <section id="technology" className="py-20 px-6 bg-bg-secondary border-y border-border">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-heading">The Governance Layer Architecture</h2>
-            <p className="text-text-muted max-w-2xl mx-auto">
-              Five mandatory requirements before and during every execution. Not policies—protocol-layer enforcement.
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-5 gap-4">
-            {[
-              { title: "Provable Actors", desc: "Every device, org, and agent cryptographically enrolled", icon: Shield },
-              { title: "Lossless Lineage", desc: "What went in, what ran, what came out—with signatures", icon: Database },
-              { title: "Portable Policy", desc: "Rules travel with the job and enforce wherever it executes", icon: FileText },
-              { title: "Explanatory Receipts", desc: "Human-readable who/what/why for every decision", icon: FileText },
-              { title: "Economic Gates", desc: "No valid evidence → no payout (or no run at all)", icon: Scale },
-            ].map((item, i) => (
-              <div key={i} className="bg-bg-card border border-border rounded-xl p-5 text-center">
-                <div className="w-10 h-10 bg-accent-blue/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-5 h-5 text-accent-blue" />
-                </div>
-                <h3 className="font-semibold mb-2 text-heading">{item.title}</h3>
-                <p className="text-text-muted text-xs">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 bg-bg-card border border-border rounded-2xl p-8">
-            <h3 className="text-xl font-semibold mb-6 text-center text-heading">The Receipt Test: Four Questions for Genesis Procurement</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                "Can this facility prove, per job, which megawatts it consumed and when?",
-                "Can it demonstrate that workloads routed to low-carbon windows when available?",
-                "Can it show attribution chains for training data and model creation?",
-                "Can it enforce jurisdictional policy at the execution boundary, not just in documentation?"
-              ].map((q, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="w-6 h-6 bg-accent-blue/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="text-accent-blue text-sm font-medium">{i + 1}</span>
-                  </div>
-                  <p className="text-text-body text-sm">{q}</p>
-                </div>
-              ))}
             </div>
-            <div className="mt-6 pt-6 border-t border-border text-center">
-              <p className="text-text-muted text-sm">
+          </div>
+
+          {/* Receipt Test */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-8 mb-8">
+            <h3 className="text-xl font-semibold mb-4">The Receipt Test: Four Questions for Genesis Procurement</h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-blue-400 text-sm font-medium">1</span>
+                </div>
+                <p className="text-slate-300 text-sm">Can this facility prove, per job, which megawatts it consumed and when?</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-blue-400 text-sm font-medium">2</span>
+                </div>
+                <p className="text-slate-300 text-sm">Can it demonstrate that workloads routed to low-carbon windows when available?</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-blue-400 text-sm font-medium">3</span>
+                </div>
+                <p className="text-slate-300 text-sm">Can it show attribution chains for training data and model creation?</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-6 h-6 bg-blue-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-blue-400 text-sm font-medium">4</span>
+                </div>
+                <p className="text-slate-300 text-sm">Can it enforce jurisdictional policy at the execution boundary, not just in documentation?</p>
+              </div>
+            </div>
+            <div className="mt-6 pt-6 border-t border-slate-800 text-center">
+              <p className="text-slate-400 text-sm">
                 If the answer to any is "no," that facility isn't ready to scale. Communities know it. 
                 Regulators are learning it. Capital will follow.
               </p>
             </div>
           </div>
-          
-          {/* Texas testbed callout */}
-          <div className="mt-8 bg-gradient-to-r from-accent-blue/10 to-accent-cyan/10 border border-accent-blue/20 rounded-xl p-6">
+
+          {/* Permian Basin callout */}
+          <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 border border-blue-500/20 rounded-xl p-6">
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-accent-amber/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Globe className="w-5 h-5 text-accent-amber" />
+              <div className="w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                <Zap className="w-5 h-5 text-amber-400" />
               </div>
               <div>
-                <h4 className="font-semibold text-heading mb-1">Regional Pilot: Permian Basin</h4>
-                <p className="text-text-muted text-sm">
-                  Initial pilots focus on <span className="text-accent-blue">West Texas and the Permian Basin</span>, 
+                <h4 className="font-semibold text-slate-200 mb-1">Regional Pilot: Permian Basin</h4>
+                <p className="text-slate-400 text-sm">
+                  Initial pilots focus on <span className="text-blue-400">West Texas and the Permian Basin</span>, 
                   where grid variability, renewable curtailment, and dense compute are converging. 
                   Exploring partnerships with regional universities and DOE-funded carbon initiatives 
                   to demonstrate energy attribution at scale.
@@ -410,13 +214,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Live Demos Section */}
-      <section id="demos" className="py-20 px-6">
+      {/* Demos Section */}
+      <section id="demos" className="py-20 px-6 bg-slate-900/50 border-y border-slate-800">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-heading">Prototype Demonstrations</h2>
-            <p className="text-text-muted max-w-2xl mx-auto mb-2">
-              These are the operational plays we are prototyping with partners - implementations of 
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Prototype Demonstrations</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto mb-2">
+              These are the operational plays we are prototyping with partners—implementations of 
               the governance patterns Genesis Mission infrastructure will need.
             </p>
             <p className="text-slate-500 text-sm">
@@ -424,254 +228,261 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Featured Demo: Well-to-Inference */}
-          <div className="bg-gradient-to-br from-bg-card to-emerald-950/30 border border-accent-emerald/30 rounded-2xl p-8 mb-8">
-            <div className="grid lg:grid-cols-2 gap-8 items-center">
+          {/* Featured: Well-to-Inference */}
+          <div id="demo-wti" className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border-2 border-blue-500/30 rounded-2xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
               <div>
-                <div className="inline-flex items-center gap-2 bg-accent-emerald/10 border border-accent-emerald/20 rounded-full px-4 py-2 mb-4">
-                  <span className="w-2 h-2 bg-accent-emerald rounded-full animate-pulse"></span>
-                  <span className="text-accent-emerald text-sm">Featured: DOE Methodology</span>
+                <div className="inline-flex items-center gap-2 bg-blue-500/20 text-blue-300 text-xs px-3 py-1 rounded-full mb-4">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                  Featured Demo
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-heading">Well-to-Inference Calculator</h3>
-                <p className="text-text-body mb-4">
-                  Like "well-to-wheel" for vehicles, <strong className="text-accent-emerald">Well-to-Inference</strong> tracks 
-                  AI's full carbon lifecycle: from power generation through transmission losses, data center overhead, 
-                  to the final inference - with cryptographic receipts at every stage.
+                <h3 className="text-2xl font-bold mb-3">Well-to-Inference Calculator</h3>
+                <p className="text-slate-300 mb-4">
+                  Like "well-to-wheel" for vehicles, Well-to-Inference tracks AI's full carbon lifecycle: 
+                  from power generation through transmission losses, data center overhead, to the final 
+                  inference—with cryptographic receipts at every stage.
                 </p>
-                <div className="grid grid-cols-4 gap-3 mb-6">
-                  {[
-                    { label: "Generation", val: "Grid Mix", color: "text-accent-amber" },
-                    { label: "Transmission", val: "Line Loss", color: "text-accent-blue" },
-                    { label: "Data Center", val: "PUE", color: "text-accent-indigo" },
-                    { label: "Inference", val: "Compute", color: "text-accent-emerald" }
-                  ].map((item, i) => (
-                    <div key={i} className="bg-slate-800/50 rounded-lg p-3 text-center">
-                      <div className={`${item.color} font-semibold text-sm`}>{item.label}</div>
-                      <div className="text-slate-500 text-xs">{item.val}</div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center gap-4">
-                  <Link href="/demo/well-to-inference" className="bg-gradient-to-r from-emerald-600 to-cyan-500 hover:from-emerald-500 hover:to-cyan-400 px-6 py-3 rounded-lg font-medium transition flex items-center gap-2 text-white">
+                <div className="flex items-center gap-4 mb-6">
+                  <Link href="/demo/well-to-inference" className="bg-blue-600 hover:bg-blue-500 px-5 py-2.5 rounded-lg font-medium transition flex items-center gap-2 text-white">
                     Launch Calculator
                     <ArrowRight className="w-4 h-4" />
                   </Link>
-                  <span className="text-xs text-text-muted">Genesis EO S3(a)(v), S5(c)(ii)</span>
+                  <span className="text-xs text-slate-500">Genesis EO §3(a)(v), §5(c)(ii)</span>
                 </div>
               </div>
-              <div className="bg-bg-secondary border border-border rounded-xl p-5">
-                <div className="text-xs text-slate-500 mb-3 font-mono">SAMPLE RECEIPT OUTPUT</div>
-                <pre className="text-xs text-text-muted overflow-x-auto">
-                  {JSON.stringify({
-                    well_to_inference_receipt: {
-                      receipt_id: "WTI-M2X7K-9FPL3Q",
-                      stages: {
-                        generation: { region: "CAISO", intensity: 142 },
-                        transmission: { loss_pct: 5.2 },
-                        data_center: { pue: 1.25 },
-                        inference: { count: 1000 }
-                      },
-                      totals: {
-                        emissions_per_inference_gco2: 0.56
-                      },
-                      cryptographic_proof: { hash: "a3f7..." }
-                    }
-                  }, null, 2)}
-                </pre>
+              <div className="bg-slate-900/80 rounded-xl p-4 font-mono text-xs text-slate-400 overflow-x-auto">
+                <pre>{`{
+  "well_to_inference_receipt": {
+    "receipt_id": "WTI-M2X7K-9FPL3Q",
+    "stages": {
+      "generation": { "region": "CAISO", "intensity": 142 },
+      "transmission": { "loss_pct": 5.2 },
+      "data_center": { "pue": 1.25 },
+      "inference": { "count": 1000 }
+    },
+    "totals": {
+      "emissions_per_inference_gco2": 0.56
+    },
+    "cryptographic_proof": { "hash": "a3f7..." }
+  }
+}`}</pre>
               </div>
             </div>
           </div>
 
           {/* Deep Dive Demos */}
-          <div className="mb-6">
-            <h4 className="text-lg font-semibold text-text-body mb-2">Deep Dive Demos</h4>
-            <p className="text-sm text-text-muted">Explore specific stages of the Well-to-Inference pipeline in detail</p>
-          </div>
+          <h3 className="text-xl font-semibold mb-6">Deep Dive Demos</h3>
+          <p className="text-slate-400 text-sm mb-6">Explore specific stages of the governance pipeline in detail</p>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            {/* Demo 1 */}
-            <Link href="/demo/curtailment-capture" className="bg-bg-card border border-accent-amber/30 rounded-xl p-6 hover:border-accent-amber/50 transition group block">
+          <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+            {/* Curtailment Capture */}
+            <Link href="/demo/curtailment-capture" id="demo-curtailment" className="demo-card block bg-slate-900 border border-emerald-500/30 rounded-xl p-6 transition hover:border-emerald-500/50">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-accent-amber/10 rounded-lg flex items-center justify-center">
-                    <Zap className="w-4 h-4 text-accent-amber" />
-                  </div>
-                  <span className="text-xs text-accent-amber font-mono">STAGE 1</span>
+                <span className="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 font-medium">STAGE 1</span>
+                <span className="text-xs px-2 py-1 rounded bg-emerald-500/10 text-emerald-400">Live Demo</span>
+              </div>
+              <h4 className="font-semibold mb-2">Curtailment Capture</h4>
+              <p className="text-slate-400 text-sm mb-3">Route workloads to renewable peaks with cryptographic receipts</p>
+              <div className="grid grid-cols-3 gap-2 text-center mb-4 bg-slate-800/50 rounded-lg p-2">
+                <div>
+                  <div className="text-emerald-400 font-semibold text-sm">847 MWh</div>
+                  <div className="text-slate-500 text-xs">Captured</div>
                 </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-accent-emerald/10 text-accent-emerald">Live Demo</span>
+                <div>
+                  <div className="text-cyan-400 font-semibold text-sm">312 t</div>
+                  <div className="text-slate-500 text-xs">CO₂e Avoided</div>
+                </div>
+                <div>
+                  <div className="text-blue-400 font-semibold text-sm">94%</div>
+                  <div className="text-slate-500 text-xs">Renewable</div>
+                </div>
               </div>
-              <h3 className="font-semibold mb-2 text-heading">Curtailment Capture</h3>
-              <p className="text-text-muted text-sm mb-3">Route workloads to renewable peaks with cryptographic receipts</p>
-              <div className="bg-slate-800/50 rounded-lg p-3 mb-4 grid grid-cols-3 gap-2 text-center">
-                <div><div className="text-accent-emerald font-semibold text-sm">847 MWh</div><div className="text-slate-500 text-xs">Captured</div></div>
-                <div><div className="text-accent-cyan font-semibold text-sm">312 t</div><div className="text-slate-500 text-xs">CO2e Avoided</div></div>
-                <div><div className="text-accent-blue font-semibold text-sm">94%</div><div className="text-slate-500 text-xs">Renewable</div></div>
-              </div>
-              <div className="text-sm font-medium flex items-center gap-1 text-accent-amber group-hover:text-amber-300 transition">
-                Launch Demo <ArrowRight className="w-4 h-4" />
+              <div className="text-sm font-medium flex items-center gap-1 text-emerald-400 hover:text-emerald-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
 
-            {/* Demo 2 */}
-            <Link href="/demo/carbon-aware-routing" className="bg-bg-card border border-accent-blue/30 rounded-xl p-6 hover:border-accent-blue/50 transition group block">
+            {/* Carbon-Aware Routing */}
+            <Link href="/demo/carbon-aware-routing" id="demo-carbon" className="demo-card block bg-slate-900 border border-blue-500/30 rounded-xl p-6 transition hover:border-blue-500/50">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-accent-blue/10 rounded-lg flex items-center justify-center">
-                    <Globe className="w-4 h-4 text-accent-blue" />
-                  </div>
-                  <span className="text-xs text-accent-blue font-mono">STAGE 2</span>
-                </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-accent-blue/10 text-accent-blue">Interactive</span>
+                <span className="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400 font-medium">STAGE 2</span>
+                <span className="text-xs px-2 py-1 rounded bg-blue-500/10 text-blue-400">Interactive</span>
               </div>
-              <h3 className="font-semibold mb-2 text-heading">Carbon-Aware Routing</h3>
-              <p className="text-text-muted text-sm mb-3">Multi-region dispatch by carbon intensity across DOE national labs</p>
+              <h4 className="font-semibold mb-2">Carbon-Aware Routing</h4>
+              <p className="text-slate-400 text-sm mb-3">Multi-region dispatch by carbon intensity across DOE national labs</p>
               <p className="text-slate-500 text-xs mb-4">Compare latency vs carbon-optimized routing decisions</p>
-              <div className="text-sm font-medium flex items-center gap-1 text-accent-blue group-hover:text-blue-300 transition">
-                Launch Demo <ArrowRight className="w-4 h-4" />
+              <div className="text-sm font-medium flex items-center gap-1 text-blue-400 hover:text-blue-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
 
-            {/* Demo 3 */}
-            <Link href="/demo/attribution-lineage" className="bg-bg-card border border-accent-emerald/30 rounded-xl p-6 hover:border-accent-emerald/50 transition group block">
+            {/* GeoGate - NEW */}
+            <Link href="/demo/geogate" id="demo-geogate" className="demo-card block bg-slate-900 border border-purple-500/30 rounded-xl p-6 transition hover:border-purple-500/50">
               <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-accent-emerald/10 rounded-lg flex items-center justify-center">
-                    <Database className="w-4 h-4 text-accent-emerald" />
-                  </div>
-                  <span className="text-xs text-accent-emerald font-mono">STAGE 4</span>
-                </div>
-                <span className="text-xs px-2 py-1 rounded-full bg-accent-emerald/10 text-accent-emerald">Interactive</span>
+                <span className="text-xs px-2 py-1 rounded bg-purple-500/20 text-purple-400 font-medium">STAGE 3a</span>
+                <span className="text-xs px-2 py-1 rounded bg-purple-500/10 text-purple-400">Live</span>
               </div>
-              <h3 className="font-semibold mb-2 text-heading">Attribution Lineage</h3>
-              <p className="text-text-muted text-sm mb-3">Visualize training provenance (AUTH.OBJ) and royalty distribution (ECON.ROY)</p>
-              <p className="text-slate-500 text-xs mb-4">Enforces S3(a)(v) + S5(c)(ii) IP standards</p>
-              <div className="text-sm font-medium flex items-center gap-1 text-accent-emerald group-hover:text-emerald-300 transition">
-                Launch Demo <ArrowRight className="w-4 h-4" />
+              <h4 className="font-semibold mb-2">GeoGate</h4>
+              <p className="text-slate-400 text-sm mb-3">Constitutional front door for geolocation AI capabilities</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-red-400">Stalker → DENIED</span> • <span className="text-green-400">Missing Person → ALLOWED</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-purple-400 hover:text-purple-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* Authenticity Gate - NEW */}
+            <Link href="/demo/authenticity-gate" id="demo-authenticity" className="demo-card block bg-slate-900 border border-amber-500/30 rounded-xl p-6 transition hover:border-amber-500/50 ring-2 ring-amber-500/20">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-400 font-medium">STAGE 3b</span>
+                <span className="text-xs px-2 py-1 rounded bg-amber-500/10 text-amber-400">NEW</span>
+              </div>
+              <h4 className="font-semibold mb-2">Authenticity Gate</h4>
+              <p className="text-slate-400 text-sm mb-3">Deepfake governance for critical channels</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-green-400">Governor + Token → ALLOW</span> • <span className="text-red-400">Spoof → DENY</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-amber-400 hover:text-amber-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* Attribution Lineage */}
+            <Link href="/demo/attribution-lineage" id="demo-attribution" className="demo-card block bg-slate-900 border border-amber-500/30 rounded-xl p-6 transition hover:border-amber-500/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-amber-500/20 text-amber-400 font-medium">STAGE 4</span>
+                <span className="text-xs px-2 py-1 rounded bg-amber-500/10 text-amber-400">Interactive</span>
+              </div>
+              <h4 className="font-semibold mb-2">Attribution Lineage</h4>
+              <p className="text-slate-400 text-sm mb-3">Visualize training provenance and royalty distribution across the inference chain</p>
+              <p className="text-slate-500 text-xs mb-4">Enforces §3(a)(v) + §5(c)(ii) IP standards</p>
+              <div className="text-sm font-medium flex items-center gap-1 text-amber-400 hover:text-amber-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* Grid2Supply */}
+            <Link href="/demo/grid2supply" id="demo-grid2supply" className="demo-card block bg-slate-900 border border-cyan-500/30 rounded-xl p-6 transition hover:border-cyan-500/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-cyan-500/20 text-cyan-400 font-medium">SUPPLY CHAIN</span>
+                <span className="text-xs px-2 py-1 rounded bg-cyan-500/10 text-cyan-400">Interactive</span>
+              </div>
+              <h4 className="font-semibold mb-2">Grid2Supply</h4>
+              <p className="text-slate-400 text-sm mb-3">Three truths orchestration: Plan vs Digital vs Physical with ghost expedite detection</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-cyan-400">S&OP Commits</span> • <span className="text-emerald-400">Digital Bookings</span> • <span className="text-amber-400">Physical Scans</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
+              </div>
+            </Link>
+
+            {/* AthleteGate */}
+            <Link href="/demo/athletegate" id="demo-athletegate" className="demo-card block bg-slate-900 border border-blue-500/30 rounded-xl p-6 transition hover:border-blue-500/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400 font-medium">NIL GOVERNANCE</span>
+                <span className="text-xs px-2 py-1 rounded bg-blue-500/10 text-blue-400">Interactive</span>
+              </div>
+              <h4 className="font-semibold mb-2">AthleteGate</h4>
+              <p className="text-slate-400 text-sm mb-3">Constitutional NIL ledger for college athletics with three-layer governance</p>
+              <div className="text-xs text-slate-500 mb-4">
+                <span className="text-blue-400">Athlete View</span> • <span className="text-purple-400">Program View</span> • <span className="text-emerald-400">National View</span>
+              </div>
+              <div className="text-sm font-medium flex items-center gap-1 text-blue-400 hover:text-blue-300 transition">
+                Launch Demo
+                <ArrowRight className="w-4 h-4" />
               </div>
             </Link>
           </div>
 
-          {/* Future Demos */}
-          <div className="mb-6">
-            <h4 className="text-lg font-semibold text-text-body mb-2">Coming Soon</h4>
-            <p className="text-sm text-text-muted">Additional governance patterns in development</p>
-          </div>
+          {/* Coming Soon */}
+          <h3 className="text-xl font-semibold mb-6">Coming Soon</h3>
+          <p className="text-slate-400 text-sm mb-6">Additional governance patterns in development</p>
           
           <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { title: "Bot Elimination Gate", date: "Q1 2026", desc: "No-token-no-run enforcement at API ingress", sub: "Implements S3(b) security requirements" },
-              { title: "Federated Policy", date: "Q1 2026", desc: "Policy travels with workload across DOE labs", sub: "Enables S5(c)(i) partnership frameworks" },
-              { title: "Treaty Coordination", date: "Q2 2026", desc: "Multi-nation research without data export", sub: "Supports S5(d) international collaboration" },
-            ].map((item, i) => (
-              <div key={i} className="bg-bg-card border border-border rounded-xl p-6 hover:border-slate-700 transition group">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-semibold text-heading">{item.title}</h3>
-                  <span className="text-xs px-2 py-1 rounded-full bg-slate-800 text-text-muted">{item.date}</span>
-                </div>
-                <p className="text-text-muted text-sm mb-3">{item.desc}</p>
-                <p className="text-slate-500 text-xs mb-4">{item.sub}</p>
-                <div className="text-sm font-medium flex items-center gap-1 text-text-muted group-hover:text-text-body transition cursor-pointer" onClick={() => scrollToSection('contact')}>
-                  Request Private Demo <ArrowRight className="w-4 h-4" />
-                </div>
+            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 opacity-75">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold">Bot Elimination Gate</h4>
+                <span className="text-xs px-2 py-1 rounded bg-slate-700 text-slate-400">Q1 2026</span>
               </div>
-            ))}
+              <p className="text-slate-400 text-sm mb-2">No-token-no-run enforcement at API ingress</p>
+              <p className="text-slate-500 text-xs">Implements §3(b) security requirements</p>
+            </div>
+            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 opacity-75">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold">Federated Policy</h4>
+                <span className="text-xs px-2 py-1 rounded bg-slate-700 text-slate-400">Q1 2026</span>
+              </div>
+              <p className="text-slate-400 text-sm mb-2">Policy travels with workload across DOE labs</p>
+              <p className="text-slate-500 text-xs">Enables §5(c)(i) partnership frameworks</p>
+            </div>
+            <div className="bg-slate-900 border border-slate-700 rounded-xl p-6 opacity-75">
+              <div className="flex items-center justify-between mb-4">
+                <h4 className="font-semibold">Treaty Coordination</h4>
+                <span className="text-xs px-2 py-1 rounded bg-slate-700 text-slate-400">Q2 2026</span>
+              </div>
+              <p className="text-slate-400 text-sm mb-2">Multi-nation research without data export</p>
+              <p className="text-slate-500 text-xs">Supports §5(d) international collaboration</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Timeline Alignment */}
-      <section className="py-20 px-6 bg-bg-secondary border-y border-border">
+      {/* Timeline Section */}
+      <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-heading">Aligned with Genesis Mission Timeline</h2>
-            <p className="text-text-muted max-w-2xl mx-auto">
-              Our IP maps directly to the Executive Order's mandated deliverables.
-            </p>
+            <h2 className="text-3xl font-bold mb-4">Aligned with Genesis Mission Timeline</h2>
+            <p className="text-slate-400">Our IP maps directly to the Executive Order's mandated deliverables.</p>
           </div>
-          <div className="max-w-3xl mx-auto space-y-6">
-            {[
-              { days: "90", date: "Feb 2026", title: "Identify computing resources", desc: "Hardware-Agnostic Attribution ensures governance works across DOE + cloud + partners" },
-              { days: "120", date: "Mar 2026", title: "Initial data assets with provenance tracking", desc: "AUTH.OBJ + TRUST.VAULT provide cryptographic provenance chain" },
-              { days: "240", date: "Jul 2026", title: "AI-directed experimentation capabilities", desc: "Constitutional enforcement ensures attribution survives autonomous discovery" },
-              { days: "270", date: "Aug 2026", title: "Initial operating capability", desc: "Governance layer for national science challenge" },
-            ].map((item, i) => (
-              <div key={i} className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-20 text-center">
-                  <div className="text-2xl font-bold text-accent-blue">{item.days}</div>
-                  <div className="text-xs text-slate-500">days</div>
-                </div>
-                <div className="flex-grow bg-bg-card border border-border rounded-xl p-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-text-muted text-sm">{item.date}</span>
-                    <span className="text-xs bg-accent-blue/10 text-accent-blue px-2 py-0.5 rounded">EO Deadline</span>
-                  </div>
-                  <h3 className="font-semibold mb-2 text-heading">{item.title}</h3>
-                  <p className="text-text-muted text-sm">{item.desc}</p>
-                </div>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-4 gap-6">
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-blue-400 font-mono text-sm mb-2">180 DAYS</div>
+              <h4 className="font-semibold mb-2">Identify computing resources</h4>
+              <p className="text-slate-400 text-sm">Hardware-Agnostic Attribution ensures governance works across DOE + cloud + partners</p>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-cyan-400 font-mono text-sm mb-2">1 YEAR</div>
+              <h4 className="font-semibold mb-2">Initial data assets with provenance tracking</h4>
+              <p className="text-slate-400 text-sm">Signed data assets and lineage receipts provide cryptographic provenance chain</p>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-emerald-400 font-mono text-sm mb-2">2 YEARS</div>
+              <h4 className="font-semibold mb-2">AI-directed experimentation capabilities</h4>
+              <p className="text-slate-400 text-sm">Constitutional enforcement ensures attribution survives autonomous discovery</p>
+            </div>
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6">
+              <div className="text-amber-400 font-mono text-sm mb-2">3 YEARS</div>
+              <h4 className="font-semibold mb-2">Initial operating capability</h4>
+              <p className="text-slate-400 text-sm">Governance layer for national science challenge</p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section id="contact" className="py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-heading">
-            Build the Governance Layer Before It's Retrofitted
-          </h2>
-          <p className="text-text-muted max-w-2xl mx-auto mb-8">
-            AI is launching without governance substrate. The Genesis Mission is the opportunity to 
-            get it right from the start. We have the IP. We have the architecture. Let's talk.
+      <section id="contact" className="py-20 px-6 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">Build the Governance Layer Before It's Retrofitted</h2>
+          <p className="text-slate-300 text-lg mb-8">
+            AI is launching without governance substrate. The Genesis Mission is the opportunity to get it right 
+            from the start. We have the IP. We have the architecture. Let's talk.
           </p>
-          
-          <div className="max-w-xl mx-auto bg-bg-card p-8 rounded-xl border border-border mb-12">
-              <form action="https://formspree.io/f/mvgezvyp" method="POST" className="space-y-6 text-left">
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                      <div>
-                          <label htmlFor="first-name" className="block text-sm font-medium text-text-body mb-2">First name</label>
-                          <input type="text" name="first-name" id="first-name" required className="block w-full rounded-md bg-slate-950 border border-slate-700 text-white shadow-sm focus:border-accent-blue focus:ring-accent-blue sm:text-sm px-4 py-3" />
-                      </div>
-                      <div>
-                          <label htmlFor="last-name" className="block text-sm font-medium text-text-body mb-2">Last name</label>
-                          <input type="text" name="last-name" id="last-name" required className="block w-full rounded-md bg-slate-950 border border-slate-700 text-white shadow-sm focus:border-accent-blue focus:ring-accent-blue sm:text-sm px-4 py-3" />
-                      </div>
-                  </div>
-                  <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-text-body mb-2">Email</label>
-                      <input type="email" name="email" id="email" required className="block w-full rounded-md bg-slate-950 border border-slate-700 text-white shadow-sm focus:border-accent-blue focus:ring-accent-blue sm:text-sm px-4 py-3" />
-                  </div>
-                  <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-text-body mb-2">Message</label>
-                      <textarea name="message" id="message" rows={4} required className="block w-full rounded-md bg-slate-950 border border-slate-700 text-white shadow-sm focus:border-accent-blue focus:ring-accent-blue sm:text-sm px-4 py-3"></textarea>
-                  </div>
-                  <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-accent-blue hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-blue transition-colors">
-                      Send Message
-                  </button>
-              </form>
-          </div>
-
-          <div className="flex items-center justify-center gap-8 text-slate-500 text-sm flex-wrap">
-            <span>DOE Partnership Inquiries</span>
-            <span className="hidden sm:inline">•</span>
-            <span>Federal Procurement</span>
-            <span className="hidden sm:inline">•</span>
-            <span>Infrastructure Investment</span>
-          </div>
+          <a href="mailto:contact@anchortrust.com" className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-500 hover:to-cyan-400 px-8 py-4 rounded-lg font-medium text-lg transition text-white">
+            Contact Us
+            <ArrowRight className="w-5 h-5" />
+          </a>
         </div>
       </section>
 
-      {/* Who We Are Section */}
-      <section className="py-12 px-6 border-t border-border">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-lg font-semibold mb-3 text-text-body">Who's behind this?</h3>
-          <p className="text-text-muted text-sm max-w-2xl mx-auto">
-            National AI Infrastructure is a PATHWELL CONNECT™ initiative from AnchorTrust Holdings, 
-            focused on attribution-first AI governance, energy-aware execution, and sovereign control 
-            planes for critical infrastructure.
-          </p>
-        </div>
-      </section>
+      {/* Note: Footer is handled by layout.tsx */}
     </div>
   );
 }
