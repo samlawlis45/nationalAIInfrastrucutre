@@ -231,7 +231,7 @@ export default function GridToCareDemo() {
               backup_hours_remaining: type.backupHours - 2,
               ai_workloads: f.activeWorkloads
                 .map(wId => workloadTypes.find(wt => wt.id === wId))
-                .filter(w => w?.aiEnabled)
+                .filter((w): w is typeof workloadTypes[0] => w !== undefined && w.aiEnabled)
                 .map(w => ({
                   workload_id: w.id,
                   model_id: w.modelId,
@@ -382,7 +382,7 @@ export default function GridToCareDemo() {
               power_consumed_kwh: powerConsumed,
               ai_workloads: f.activeWorkloads
                 .map(wId => workloadTypes.find(wt => wt.id === wId))
-                .filter(w => w?.aiEnabled)
+                .filter((w): w is typeof workloadTypes[0] => w !== undefined && w.aiEnabled)
                 .map(w => ({
                   workload_id: w.id,
                   model_id: w.modelId,
